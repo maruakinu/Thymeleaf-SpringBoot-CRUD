@@ -5,10 +5,7 @@ import com.demo.postgresqlspring.domain.article.entity.ArticleEntity;
 import com.demo.postgresqlspring.domain.article.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -21,6 +18,11 @@ public class ArticleController {
     @PostMapping("/post")
     public ResponseStructure<ArticleEntity> saveArticle(@RequestBody ArticleEntity article){
         return articleService.saveArticle(article);
+    }
+
+    @GetMapping("/article/{id}")
+    public ResponseStructure<ArticleEntity> getStudentById(@PathVariable int id){
+        return null;
     }
 
 
