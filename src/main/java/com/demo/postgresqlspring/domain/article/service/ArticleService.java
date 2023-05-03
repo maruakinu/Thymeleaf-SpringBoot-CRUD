@@ -49,14 +49,29 @@ public class ArticleService {
         if(newArticle != null) {
             responseStructure.setData(newArticle);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
-            responseStructure.setMessage("Student updated successfully");
+            responseStructure.setMessage("Article updated successfully");
         } else {
             responseStructure.setData(null);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
-            responseStructure.setMessage("Student don't exists");
+            responseStructure.setMessage("Article don't exists");
         }
         return responseStructure;
     }
 
+
+    public ArticleDto<String> deleteArticle(Integer id){
+        ArticleDto<String> responseStructure = new ArticleDto<String>();
+        boolean isTrue = articleDao.deleteArticle(id);
+        if(isTrue) {
+            responseStructure.setData("Article selected");
+            responseStructure.setStatusCode(HttpStatus.OK.value());
+            responseStructure.setMessage("Article deleted successfully");
+        } else {
+            responseStructure.setData("Article not selected");
+            responseStructure.setStatusCode(HttpStatus.NO_CONTENT.value());
+            responseStructure.setMessage("Article has failed to get delete");
+        }
+        return responseStructure;
+    }
 
 }

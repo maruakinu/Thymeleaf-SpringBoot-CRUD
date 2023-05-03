@@ -30,6 +30,11 @@ public class ArticleController {
         return articleService.updateStudent(article, id);
     }
 
+    @DeleteMapping("/article/{id}")
+    public ArticleDto<String> deleteArticle(@PathVariable int id){
+        return articleService.deleteArticle(id);
+    }
+
 
 
 
