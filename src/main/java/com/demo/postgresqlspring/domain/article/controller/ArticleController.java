@@ -1,6 +1,6 @@
 package com.demo.postgresqlspring.domain.article.controller;
 
-import com.demo.postgresqlspring.domain.article.dto.ResponseStructure;
+import com.demo.postgresqlspring.domain.article.dto.ArticleDto;
 import com.demo.postgresqlspring.domain.article.entity.ArticleEntity;
 import com.demo.postgresqlspring.domain.article.service.ArticleService;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +16,13 @@ public class ArticleController {
     ArticleService articleService;
 
     @PostMapping("/post")
-    public ResponseStructure<ArticleEntity> saveArticle(@RequestBody ArticleEntity article){
+    public ArticleDto<ArticleEntity> saveArticle(@RequestBody ArticleEntity article){
         return articleService.saveArticle(article);
     }
 
     @GetMapping("/article/{id}")
-    public ResponseStructure<ArticleEntity> getStudentById(@PathVariable int id){
-        return null;
+    public ArticleDto<ArticleEntity> getStudentById(@PathVariable int id){
+        return articleService.getArticleById(id);
     }
 
 
