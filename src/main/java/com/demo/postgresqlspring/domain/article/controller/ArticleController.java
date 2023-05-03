@@ -21,9 +21,16 @@ public class ArticleController {
     }
 
     @GetMapping("/article/{id}")
-    public ArticleDto<ArticleEntity> getStudentById(@PathVariable int id){
+    public ArticleDto<ArticleEntity> getArticleById(@PathVariable int id){
         return articleService.getArticleById(id);
     }
+
+    @PutMapping("/article/{id}")
+    public ArticleDto<ArticleEntity> updateArticle(@RequestBody ArticleEntity article, @PathVariable Integer id){
+        return articleService.updateStudent(article, id);
+    }
+
+
 
 
 }

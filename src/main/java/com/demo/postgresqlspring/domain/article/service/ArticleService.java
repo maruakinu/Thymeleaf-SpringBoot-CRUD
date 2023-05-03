@@ -30,7 +30,7 @@ public class ArticleService {
 
     public ArticleDto<ArticleEntity> getArticleById(Integer id){
         ArticleDto<ArticleEntity> responseStructure = new ArticleDto<ArticleEntity>();
-        ArticleEntity article = articleDao.getStudentById(id);
+        ArticleEntity article = articleDao.getArticleById(id);
         if(article != null) {
             responseStructure.setData(article);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
@@ -43,7 +43,20 @@ public class ArticleService {
         return responseStructure;
     }
 
-
+    public ArticleDto<ArticleEntity> updateStudent(ArticleEntity article, Integer id){
+        ArticleDto<ArticleEntity> responseStructure = new ArticleDto<ArticleEntity>();
+        ArticleEntity newArticle = articleDao.updateArticle(article, id);
+        if(newArticle != null) {
+            responseStructure.setData(newArticle);
+            responseStructure.setStatusCode(HttpStatus.CREATED.value());
+            responseStructure.setMessage("Student updated successfully");
+        } else {
+            responseStructure.setData(null);
+            responseStructure.setStatusCode(HttpStatus.CREATED.value());
+            responseStructure.setMessage("Student don't exists");
+        }
+        return responseStructure;
+    }
 
 
 }

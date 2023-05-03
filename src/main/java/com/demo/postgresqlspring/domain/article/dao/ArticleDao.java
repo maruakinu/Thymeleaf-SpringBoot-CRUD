@@ -19,11 +19,20 @@ public class ArticleDao {
     }
 
     // get student by id
-    public ArticleEntity getStudentById(int id) {
+    public ArticleEntity getArticleById(int id) {
         Optional<ArticleEntity> optional = articleRepository.findById(id);
         if(optional.isEmpty()) {
             return null;
         } else return optional.get();
+    }
+
+    public ArticleEntity updateArticle(ArticleEntity article, int id) {
+        ArticleEntity existingarticle = getArticleById(id);
+        if(existingarticle != null) {
+            existingarticle.setTitle(article.getTitle());
+            existingarticle.setDescription(article.getDescription());
+            return articleRepository.save(existingarticle);
+        } else return null;
     }
 
 
