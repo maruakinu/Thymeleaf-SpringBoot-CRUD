@@ -22,7 +22,7 @@ API TESTING ( Open your API Testing Tool )
 2. Update Article by ID
 
         UPDATE METHOD
-         localhost:8080/api/article/1
+        localhost:8080/api/article/1
 
          {
             "title": "new title",
