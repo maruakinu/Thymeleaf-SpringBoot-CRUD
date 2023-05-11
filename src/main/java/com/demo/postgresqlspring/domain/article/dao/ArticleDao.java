@@ -14,12 +14,12 @@ public class ArticleDao {
     @Autowired
     ArticleRepository articleRepository;
 
-    // save student
+    // save article
     public ArticleEntity saveArticle(ArticleEntity article) {
         return articleRepository.save(article);
     }
 
-    // get student by id
+    // get article by id
     public ArticleEntity getArticleById(int id) {
         Optional<ArticleEntity> optional = articleRepository.findById(id);
         if(optional.isEmpty()) {
