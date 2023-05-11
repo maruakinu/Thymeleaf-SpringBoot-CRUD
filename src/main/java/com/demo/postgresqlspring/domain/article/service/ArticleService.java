@@ -21,9 +21,14 @@ public class ArticleService {
 
     public ArticleDto<ArticleEntity> saveArticle(ArticleEntity article){
         ArticleDto<ArticleEntity> responseStructure = new ArticleDto<ArticleEntity>();
-        ArticleEntity article1 = articleRepository.save(article);
+  //      ArticleEntity article1 = articleRepository.save(article);
 
-        if(article1 != null) {
+        if(article.getTitle() == "") {
+            responseStructure.setData(null);
+            responseStructure.setStatusCode(HttpStatus.NO_CONTENT.value());
+            responseStructure.setMessage("Article has failed to save");
+        }else if(article != null) {
+            ArticleEntity article1 = articleRepository.save(article);
             responseStructure.setData(article1);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
             responseStructure.setMessage("Article saved successfully");

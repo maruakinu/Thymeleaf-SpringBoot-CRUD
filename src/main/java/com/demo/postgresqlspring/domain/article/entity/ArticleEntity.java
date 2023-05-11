@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.NonNull;
 
 @Getter
 @Setter
@@ -17,9 +18,11 @@ public class ArticleEntity {
     private int id;
 
     @Column(name = "title")
+    @NonNull
     private String title;
 
     @Column(name = "description")
+    @NonNull
     private String description;
 
 
