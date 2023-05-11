@@ -27,15 +27,11 @@ public class ArticleService {
             responseStructure.setData(null);
             responseStructure.setStatusCode(HttpStatus.NO_CONTENT.value());
             responseStructure.setMessage("Article has failed to save");
-        }else if(article != null) {
+        }else{
             ArticleEntity article1 = articleRepository.save(article);
             responseStructure.setData(article1);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
             responseStructure.setMessage("Article saved successfully");
-        } else {
-            responseStructure.setData(null);
-            responseStructure.setStatusCode(HttpStatus.CREATED.value());
-            responseStructure.setMessage("Article has failed to save");
         }
         return responseStructure;
     }
@@ -49,7 +45,7 @@ public class ArticleService {
             responseStructure.setMessage("Article got by id");
         } else {
             responseStructure.setData(null);
-            responseStructure.setStatusCode(HttpStatus.CREATED.value());
+            responseStructure.setStatusCode(HttpStatus.NOT_FOUND.value());
             responseStructure.setMessage("Article don't exists");
         }
         return responseStructure;
