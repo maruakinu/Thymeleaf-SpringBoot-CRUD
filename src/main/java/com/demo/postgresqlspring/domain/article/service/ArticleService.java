@@ -82,11 +82,11 @@ public class ArticleService {
         if(student.size() > 0) {
             responseStructure.setData(student);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
-            responseStructure.setMessage("Here are the list of all Students");
+            responseStructure.setMessage("Here are the list of all Articles");
         } else {
             responseStructure.setData(null);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
-            responseStructure.setMessage("No student record exists in database");
+            responseStructure.setMessage("No article record exists in database");
         }
         return responseStructure;
     }
