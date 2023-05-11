@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ArticleService {
 
@@ -70,6 +72,21 @@ public class ArticleService {
             responseStructure.setData("Article not selected");
             responseStructure.setStatusCode(HttpStatus.NO_CONTENT.value());
             responseStructure.setMessage("Article has failed to get delete");
+        }
+        return responseStructure;
+    }
+
+    public ArticleDto<List<ArticleEntity>> getAllArticles(){
+        ArticleDto<List<ArticleEntity>> responseStructure = new ArticleDto<List<ArticleEntity>>();
+        List<ArticleEntity> student = articleDao.getAllArticles();
+        if(student.size() > 0) {
+            responseStructure.setData(student);
+            responseStructure.setStatusCode(HttpStatus.CREATED.value());
+            responseStructure.setMessage("Here are the list of all Students");
+        } else {
+            responseStructure.setData(null);
+            responseStructure.setStatusCode(HttpStatus.CREATED.value());
+            responseStructure.setMessage("No student record exists in database");
         }
         return responseStructure;
     }

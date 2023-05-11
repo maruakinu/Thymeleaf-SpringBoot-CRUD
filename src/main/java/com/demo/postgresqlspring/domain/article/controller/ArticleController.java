@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -23,6 +25,11 @@ public class ArticleController {
     @GetMapping("/article/{id}")
     public ArticleDto<ArticleEntity> getArticleById(@PathVariable int id){
         return articleService.getArticleById(id);
+    }
+
+    @GetMapping("/all")
+    public ArticleDto<List<ArticleEntity>> getallArticles(){
+        return articleService.getAllArticles();
     }
 
     @PutMapping("/article/{id}")

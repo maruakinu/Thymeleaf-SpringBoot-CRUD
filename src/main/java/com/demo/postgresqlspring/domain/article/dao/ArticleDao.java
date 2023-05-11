@@ -5,6 +5,7 @@ import com.demo.postgresqlspring.domain.article.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -33,6 +34,10 @@ public class ArticleDao {
             existingarticle.setDescription(article.getDescription());
             return articleRepository.save(existingarticle);
         } else return null;
+    }
+
+    public List<ArticleEntity> getAllArticles() {
+        return articleRepository.findAll();
     }
 
     public Boolean deleteArticle(int id) {
