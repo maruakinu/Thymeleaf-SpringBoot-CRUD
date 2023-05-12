@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ArticleService {
@@ -38,7 +39,8 @@ public class ArticleService {
 
     public ArticleDto<ArticleEntity> getArticleById(Integer id){
         ArticleDto<ArticleEntity> responseStructure = new ArticleDto<ArticleEntity>();
-        ArticleEntity article = articleDao.getArticleById(id);
+        //ArticleEntity article = articleDao.getArticleById(id);
+        ArticleEntity article = articleRepository.findByID(id);
         if(article != null) {
             responseStructure.setData(article);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
