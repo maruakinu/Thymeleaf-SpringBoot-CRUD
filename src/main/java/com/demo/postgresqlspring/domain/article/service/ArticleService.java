@@ -39,7 +39,7 @@ public class ArticleService {
 
     public ArticleDto<ArticleEntity> getArticleById(Integer id){
         ArticleDto<ArticleEntity> responseStructure = new ArticleDto<ArticleEntity>();
-        //ArticleEntity article = articleDao.getArticleById(id);
+        ArticleEntity article1 = articleDao.getArticleById(id);
         ArticleEntity article = articleRepository.findByID(id);
         if(article != null) {
             responseStructure.setData(article);
