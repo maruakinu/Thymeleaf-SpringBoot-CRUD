@@ -90,9 +90,11 @@ public class ArticleService {
 
     public ArticleDto<List<ArticleEntity>> getAllArticles(){
         ArticleDto<List<ArticleEntity>> responseStructure = new ArticleDto<List<ArticleEntity>>();
-        List<ArticleEntity> article = articleDao.getAllArticles();
-        if(article.size() > 0) {
-            responseStructure.setData(article);
+     //   List<ArticleEntity> article = articleDao.getAllArticles();
+
+        List<ArticleEntity> articles = articleRepository.findAll();
+        if(articles.size() > 0) {
+            responseStructure.setData(articles);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
             responseStructure.setMessage("Here are the list of all Articles");
         } else {
