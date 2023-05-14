@@ -41,11 +41,11 @@ public class ArticleDao {
     }
 
     public Boolean deleteArticle(int id) {
-//        Optional<ArticleEntity> optional = articleRepository.findById(id);
-//        if(optional.isPresent()) {
-//            articleRepository.delete(optional.get());
+        Optional<ArticleEntity> optional = articleRepository.findById(id);
+        if(optional.isPresent()) {
+            articleRepository.delete(optional.get());
             return true;
-//        } else return false;
+        } else return false;
     }
 
 

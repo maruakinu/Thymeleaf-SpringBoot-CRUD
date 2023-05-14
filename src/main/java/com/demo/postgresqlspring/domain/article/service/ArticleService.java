@@ -22,7 +22,6 @@ public class ArticleService {
 
     public ArticleDto<ArticleEntity> saveArticle(ArticleEntity article){
         ArticleDto<ArticleEntity> responseStructure = new ArticleDto<ArticleEntity>();
-  //      ArticleEntity article1 = articleRepository.save(article);
 
         if(article.getTitle() == "") {
             responseStructure.setData(null);
@@ -39,8 +38,8 @@ public class ArticleService {
 
     public ArticleDto<ArticleEntity> getArticleById(Integer id){
         ArticleDto<ArticleEntity> responseStructure = new ArticleDto<ArticleEntity>();
-        ArticleEntity article1 = articleDao.getArticleById(id);
         ArticleEntity article = articleRepository.findByID(id);
+
         if(article != null) {
             responseStructure.setData(article);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
@@ -55,9 +54,14 @@ public class ArticleService {
 
     public ArticleDto<ArticleEntity> updateStudent(ArticleEntity article, Integer id){
         ArticleDto<ArticleEntity> responseStructure = new ArticleDto<ArticleEntity>();
-        ArticleEntity newArticle = articleDao.updateArticle(article, id);
-        if(newArticle != null) {
-            responseStructure.setData(newArticle);
+
+        ArticleEntity existingarticle = articleRepository.findByID(id);
+
+        if(existingarticle != null) {
+            existingarticle.setTitle(article.getTitle());
+            existingarticle.setDescription(article.getDescription());
+            ArticleEntity article1 = articleRepository.save(existingarticle);
+            responseStructure.setData(article1);
             responseStructure.setStatusCode(HttpStatus.CREATED.value());
             responseStructure.setMessage("Article updated successfully");
         } else {
