@@ -1,6 +1,5 @@
 package com.demo.postgresqlspring.domain.article.service;
 
-import com.demo.postgresqlspring.domain.article.dao.ArticleDao;
 import com.demo.postgresqlspring.domain.article.dto.ArticleDto;
 import com.demo.postgresqlspring.domain.article.entity.ArticleEntity;
 import com.demo.postgresqlspring.domain.article.repository.ArticleRepository;
@@ -9,13 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ArticleService {
-
-    @Autowired
-    ArticleDao articleDao;
 
     @Autowired
     ArticleRepository articleRepository;
@@ -75,12 +70,15 @@ public class ArticleService {
 
     public ArticleDto<String> deleteArticle(Integer id){
         ArticleDto<String> responseStructure = new ArticleDto<String>();
-        boolean isTrue = articleDao.deleteArticle(id);
-        if(isTrue) {
+
+        ArticleEntity found = articleRepository.findByID(id);
+
+        if (found != null){
+            articleRepository.delete(found);
             responseStructure.setData("Article selected");
             responseStructure.setStatusCode(HttpStatus.OK.value());
             responseStructure.setMessage("Article deleted successfully");
-        } else {
+        }else{
             responseStructure.setData("Article not selected");
             responseStructure.setStatusCode(HttpStatus.NO_CONTENT.value());
             responseStructure.setMessage("Article has failed to get delete");
@@ -90,7 +88,6 @@ public class ArticleService {
 
     public ArticleDto<List<ArticleEntity>> getAllArticles(){
         ArticleDto<List<ArticleEntity>> responseStructure = new ArticleDto<List<ArticleEntity>>();
-     //   List<ArticleEntity> article = articleDao.getAllArticles();
 
         List<ArticleEntity> articles = articleRepository.findAll();
         if(articles.size() > 0) {
