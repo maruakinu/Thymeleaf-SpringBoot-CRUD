@@ -39,6 +39,11 @@ API TESTING ( Open your API Testing Tool )
         GET METHOD
         localhost:8080/api/article/3
 
+4. Get All Articles
+
+        GET METHOD
+        localhost:8080/api/all
+
 
 
 
