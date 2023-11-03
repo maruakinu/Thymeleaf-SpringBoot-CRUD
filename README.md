@@ -1,4 +1,4 @@
-# SpringBoot-PosgreSQL-CRUD
+# Thymeleaf-SpringBoot-CRUD
 CRUD operation using springboot as backend framework and postgreSQL as database
 
 INSTRUCTIONS
